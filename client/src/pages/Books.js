@@ -72,7 +72,7 @@ class Books extends Component {
                 value={this.state.author}
                 onChange={this.handleInputChange}
                 name="author"
-                placeholder="Author (required)"
+                 placeholder="Author (required)"
               />
               <TextArea
                 value={this.state.synopsis}
