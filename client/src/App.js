@@ -28,6 +28,8 @@ function App() {
         </Jumbotron> 
 
         <Switch>
+          <Route exact path="/" component={Home} />  
+          <Route exact path="/Login" component={Login} />  
           <Route exact path="/createaccount" component={Main} />
           <Route exact path="/" component={Users} />
           <Route exact path="/Users" component={Users} />
