@@ -1,35 +1,35 @@
 const db = require("../models");
 
-// Defining methods for the booksController
+// Defining methods for the userController
 module.exports = {
   findAll: function(req, res) {
-    db.Book
+    db.User
       .find(req.query)
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findById: function(req, res) {
-    db.Book
-      .findById(req.params.id)
+  findByName: function(req, res) {
+    db.User
+      .findByName(req.params.name)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    db.Book
+    db.User
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.Book
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+    db.User
+      .findOneAndUpdate({ _name: req.params.name }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.Book
-      .findById({ _id: req.params.id })
+    db.User
+      .findByName({ _name: req.params.name })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
