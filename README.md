@@ -1,2 +1,0 @@
-# resumeJumper
-Resume Builder Application
