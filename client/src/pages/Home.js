@@ -1,23 +1,15 @@
 import React from "react";
-import Jumbotron from "../Jumbotron";
-import {Container} from "../Grid";
+import Jumbotron from "../components/Jumbotron";
+import {Container} from "../components/Grid";
 
 
 
 // The ...props means, spread all of the passed props onto this element
 // That way we don't have to define them all individually
-function Login(props) {
+function Home(props) {
   return (
      <div> 
-         <Jumbotron>
-             <h1>Resume Jumper</h1>
-             <br/>
-             <h2>Your resume manager!</h2>
-             <br/>
-             <p>
-                 Jump from job to job and just own it. 
-             </p>
-        </Jumbotron> 
+      
          <Container fluid>
         
          <div className="row">
@@ -34,4 +26,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default Home;
