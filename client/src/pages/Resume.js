@@ -9,19 +9,22 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 
 class Users extends Component {
   state = {
-    users: [],
+    resume: [],
+    jobs:[],
     name: "",
-    email: "",
-    password: "",
-    address:""
+    jobs:"",
+    skills: "",
+    startDate:"",
+    endDate:"",
+    tech:""
   };
 
   componentDidMount() {
-    this.loadUsers();
+    this.loadResume();
   }
 
-  loadUsers = () => {
-    API.getUsers()
+  loadResume = () => {
+    API.getResume()
       .then(res => {
         console.log(res);
         this.setState({ users: res.data });
@@ -29,9 +32,9 @@ class Users extends Component {
       .catch(err => console.log(err));
   };
 
-  deleteUser = name => {
-    API.deleteUser(name)
-      .then(res => this.loadUsers())
+  deleteResume = name => {
+    API.deleteResume(name)
+      .then(res => this.loadResume())
       .catch(err => console.log(err));
   };
 
@@ -42,20 +45,15 @@ class Users extends Component {
     
     });
   };
-
+////////EDIT FORMS FOR RESUME////
   handleFormSubmit = event => {
-    var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-   var emailinput = (this.state.email);
-   if (email_reg.test(emailinput) == false) {
-       alert('Please enter a valid email');
-   }
     event.preventDefault();
-    if (this.state.name && this.state.email && this.state.password && this.state.address && emailinput) {
-      API.saveUser({
+    if (this.state.name && this.state.skills && this.state.startDate && this.state.endDate ) {
+      API.saveResume({
         name: this.state.name,
-        email: this.state.email,
-        password: this.state.password,
-        address:this.state.address
+        skills: this.state.skills,
+        startDate: this.state.startDate,
+        endDate:this.state.endDate
       })
         .then(res => this.loadUsers())
         .catch(err => console.log(err));
@@ -69,7 +67,7 @@ class Users extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>Submit your info</h1>
+              <h1>Create Resume</h1>
             </Jumbotron>
             <form>
               <Input
@@ -79,26 +77,25 @@ class Users extends Component {
                 placeholder="Title (required)"
               />
               <Input
-                value={this.state.email}
+                value={this.state.skills}
                 onChange={this.handleInputChange}
-                name="email"
-                placeholder="Email (required)"
+                name="skills"
+                placeholder="enter skills used for job here"
               />
               <Input
-                type="password"
-                value={this.state.password}
+                value={this.state.startDate}
                 onChange={this.handleInputChange}
-                name="password"
-                placeholder="password (required)"
+                name="StartDate"
+                placeholder="Date Started"
               />
               <Input
-                value={this.state.address}
+                value={this.state.endDate}
                 onChange={this.handleInputChange}
-                name="address"
-                placeholder="Address (required)"
+                name="endDate"
+                placeholder="Date Ended"
               />
               <FormBtn
-                disabled={!(this.state.name && this.state.email && this.state.password && this.state.address)}
+                disabled={!(this.state.name && this.state.skills && this.state.startDate && this.state.endDate)}
                 onClick={this.handleFormSubmit}
               >
                 Submit User

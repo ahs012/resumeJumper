@@ -16,5 +16,14 @@ export default {
   // Saves a user to the database
   saveUser: function(userData) {
     return axios.post("/api/user", userData);
-  }
+  },
+  getResume: function() {
+    return axios.get("/api/resume");
+  },
+  deleteResume: function(name){
+    return axios.delete("/api/resume" + name)
+  },
+  saveResume: function(resumeData) {
+    return axios.post("/api/resume", resumeData);
+  },
 };
