@@ -4,6 +4,7 @@ import Users from "./pages/Users";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Resume from "./pages/Resume";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route exact path="/" component={Users} />
           <Route exact path="/Users" component={Users} />
           <Route exact path="/Users/:name" component={Detail} />
+          <Route exact path="/Resume/" component={Resume} />
           <Route component={NoMatch} />
         </Switch>
       </div>

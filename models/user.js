@@ -8,7 +8,11 @@ const userSchema = new Schema({
   address: {type : String, required: true},
   phoneNumber: {type : Number, required: true},
   creditCard: {type : Number, required: true},
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  resume: [{
+    type:Schema.Types.ObjectId,
+    ref: "Resume"
+  }],
 });
 
 const User = mongoose.model("User", userSchema);
