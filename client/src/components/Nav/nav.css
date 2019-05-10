@@ -1,0 +1,40 @@
+.toolbar{
+    width: 100%;
+    position: fixed;
+    background-color: blue;
+    height: 56px;
+    top: 0;
+    left: 0;
+}
+
+.navLogo a{
+    color: white;
+    font-size: 2rem;
+}
+
+.nav_toolbar{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 1rem;
+}
+
+.navItem a{
+    color: white;
+}
+ 
+.navItem a:hover,
+.navItem a:active{
+    color: black;
+}
+
+.navItem ul{
+    list-style: none;
+    margin: 0; 
+    padding: 0;
+    display: flex;
+}
+
+.navItem il{
+    position: relative;
+}
