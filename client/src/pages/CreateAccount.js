@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 
-
-
 class CreateAccount extends Component {
     state = {
         firstName: '',
@@ -101,6 +99,7 @@ class CreateAccount extends Component {
                     name="postal"
                     onChange={this.handleInputChange} />
                 <button onClick={this.handleFormSubmit}>Create Account</button>
+
             </form>
         )
     }

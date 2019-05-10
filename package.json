@@ -1,7 +1,7 @@
 {
   "name": "mern",
   "version": "1.0.0",
-  "description": "",
+  "description": "Resume Builder Application",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -21,8 +21,12 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
     "express": "^4.16.4",
     "if-env": "^1.0.4",
-    "mongoose": "^5.5.5"
+    "mdbreact": "^4.13.0",
+    "mongoose": "^5.5.5",
+    "react-bootstrap": "^1.0.0-beta.8",
+    "react-dom": "^16.8.6"
   }
 }
