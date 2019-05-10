@@ -12,8 +12,13 @@ const userSchema = new Schema({
   cardNumber: {type : Number, required: true},
   securityCode: {type : Number, required: true},
   postal: {type : Number, required: true},
-  date: { type: Date}
+  date: { type: Date},
+  resume: [{
+    type:Schema.Types.ObjectId,
+    ref: "Resume"
+  }],
 });
+
 
 const User = mongoose.model("User", userSchema);
 
