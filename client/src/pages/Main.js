@@ -6,7 +6,7 @@ function Main() {
   return (
     <div>
       <CreateAccount />
-      <Subscribe />
+      {/* <Subscribe /> */}
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-
-
+import API from "../utils/API";
 
 class CreateAccount extends Component {
     state = {
@@ -8,63 +7,99 @@ class CreateAccount extends Component {
         lastName: '',
         userName: '',
         address: '',
-        password: ''
+        password: '',
+        nameOnCard: '',
+        cardNumber: '',
+        date: '',
+        securityCode: '',
+        postal: ''
     }
 
     handleInputChange = event => {
-        // Getting the value and name of the input which triggered the change
-        let value = event.target.value;
-        const name = event.target.name;
-    
-        if (name === "password") {
-          value = value.substring(0, 15);
-        }
-        // Updating the input's state
+        const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value,
+
         });
-      };
-      handleFormSubmit = event => {
-        // Preventing the default behavior of the form submit (which is to refresh the page)
+    };
+
+    handleFormSubmit = event => {
+        //     var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        //    var emailinput = (this.state.email);
+        //    if (email_reg.test(emailinput) == false) {
+        //        alert('Please enter a valid email');
+        //    }
         event.preventDefault();
-        if (!this.state.firstName || !this.state.lastName) {
-          alert("Fill out your first and last name please!");
-        } else if (this.state.password.length < 6) {
-          alert(
-            `Choose a more secure password ${this.state.firstName} ${this.state
-              .lastName}`
-          );
-        } else {
-          alert(`Hello ${this.state.firstName} ${this.state.lastName}`);
+        if (this.state.firstName && this.state.lastName && this.state.userName && this.state.password && this.state.address && this.state.cardNumber && this.state.securityCode && this.state.date) {
+            API.saveUser({
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                userName: this.state.userName,
+                password: this.state.password,
+                address: this.state.address,
+                nameOnCard: this.state.nameOnCard,
+                cardNumber: this.state.cardNumber,
+                date: this.state.date,
+                securityCode: this.state.securityCode,
+                postal: this.state.postal
+            })
+                // .then(res => this.loadUsers())
+                .catch(err => console.log(err));
         }
-    
-        this.setState({
-          firstName: "",
-          lastName: "",
-          password: ""
-        });
-      };
-        
+    };
 
     render() {
         return (
             <form> Create An Account
                 <input placeholder='First Name'
                     value={this.state.firstName}
-                    onChange={e => this.setState({ firstName: e.target.value })} />
+                    name="firstName"
+                    onChange={this.handleInputChange} />
                 <input placeholder='Last Name'
                     value={this.state.lastName}
-                    onChange={e => this.setState({ lastName: e.target.value })} />
+                    name="lastName"
+                    onChange={this.handleInputChange} />
                 <input placeholder='User Name'
                     value={this.state.userName}
-                    onChange={e => this.setState({ userName: e.target.value })} />
+                    name="userName"
+                    onChange={this.handleInputChange} />
                 <input placeholder='Address'
                     value={this.state.address}
-                    onChange={e => this.setState({ address: e.target.value })} />
-                <input placeholder='Password' type='Password'
+                    name="address"
+                    onChange={this.handleInputChange} />
+                <input placeholder='Password'
                     value={this.state.password}
-                    onChange={e => this.setState({ password: e.target.value })} />
-                <button onClick={() => this.onSubmit()}>Create Account</button>
+                    name="password"
+                    onChange={this.handleInputChange} />
+
+
+                {/* <h5>Subscription Info</h5> */}
+                {/* <input placeholder='Name On Card'
+                    value={this.state.nameOnCard}
+                    name="NameOnCard"
+                    onChange={this.handleInputChange} /> */}
+                    <input placeholder='Name on Card'
+                    value={this.state.nameOnCard}
+                    name="nameOnCard"
+                    onChange={this.handleInputChange} />
+                <input placeholder='Card Number'
+                    value={this.state.cardNumber}
+                    name="cardNumber"
+                    onChange={this.handleInputChange} />
+                <input placeholder='MM/DD/YYYY'
+                    value={this.state.date}
+                    name="date"
+                    onChange={this.handleInputChange} />
+                <input placeholder='CVV'
+                    value={this.state.securityCode}
+                    name="securityCode"
+                    onChange={this.handleInputChange} />
+                <input placeholder='Postal'
+                    value={this.state.postal}
+                    name="postal"
+                    onChange={this.handleInputChange} />
+                <button onClick={this.handleFormSubmit}>Create Account</button>
+
             </form>
         )
     }
