@@ -10,12 +10,12 @@ import { Link } from 'react-router-dom'
 // That way we don't have to define them all individually
 function Home(props) {
   return (
-     <div> 
+     <div class="text-center"> 
       
          <Container fluid>
         
          <div className="row">
-         <div className="col-sm-6">
+         <div className="col-lg-12">
          <Link className="btn btn-primary btn-lg active" to="/createaccount">Create account</Link>
 
          <Link className="btn btn-secondary btn-lg active" to="/login">Login</Link>
