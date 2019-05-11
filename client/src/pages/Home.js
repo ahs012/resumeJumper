@@ -1,6 +1,8 @@
 import React from "react";
 import Jumbotron from "../components/Jumbotron";
 import {Container} from "../components/Grid";
+import { Link } from 'react-router-dom'
+
 
 
 
@@ -14,9 +16,10 @@ function Home(props) {
         
          <div className="row">
          <div className="col-sm-6">
-         <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Create account</a>
+         <Link className="btn btn-primary btn-lg active" to="/createaccount">Create account</Link>
 
-        <a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Login</a>
+         <Link className="btn btn-secondary btn-lg active" to="/login">Login</Link>
+        
          </div>
          </div>
          </Container>
