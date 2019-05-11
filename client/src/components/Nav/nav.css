@@ -1,14 +1,14 @@
 .toolbar{
     width: 100%;
     position: fixed;
-    background-color: blue;
+    background-color: white;
     height: 56px;
     top: 0;
     left: 0;
 }
 
 .navLogo a{
-    color: white;
+    color: orangered;
     font-size: 2rem;
 }
 
@@ -20,12 +20,14 @@
 }
 
 .navItem a{
-    color: white;
+    color: teal;
+    padding: 5px;
+   
 }
  
 .navItem a:hover,
 .navItem a:active{
-    color: black;
+    color: orangered;
 }
 
 .navItem ul{
@@ -37,4 +39,14 @@
 
 .navItem il{
     position: relative;
+    padding: 5rem;
+    
+}
+
+.spacer{
+    flex: 1; 
+}
+
+img {
+  width: 198px;
 }
