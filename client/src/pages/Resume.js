@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import JobForm from "../components/jobForm";
 
 class Resume extends Component {
     state = {
@@ -24,7 +25,6 @@ class Resume extends Component {
     loadResume = () => {
         API.getResume()
             .then(res => {
-                console.log(res);
                 this.setState({ resume: res.data });
             })
             .catch(err => console.log(err));
@@ -33,8 +33,8 @@ class Resume extends Component {
     loadJob = () => {
         API.getJob()
             .then(res => {
-                console.log(res);
-                this.setState({ jobs: res.data });
+                console.log(res.data);
+                this.setState({ jobs: [res.data] });
             })
             .catch(err => console.log(err));
     }
@@ -73,7 +73,6 @@ class Resume extends Component {
     }
 
     render() {
-        console.log(this.state.resume);
         return (
             <Container fluid>
                 <Row>
@@ -116,63 +115,7 @@ class Resume extends Component {
                         <br></br>
 
                         <h1>Add jobs</h1>
-                        <jobForm>
-                            <Input
-                                value={this.state.companyName}
-                                onChange={this.handleInputChange}
-                                name="companyName"
-                                placeholder="Company Name"
-                            />
-                            <Input
-                                value={this.state.title}
-                                onChange={this.handleInputChange}
-                                name="title"
-                                placeholder="Job Title"
-                            />
-                            <Input
-                                value={this.state.address}
-                                onChange={this.handleInputChange}
-                                name="jobAddress"
-                                placeholder="Job Address"
-                            />
-                            <Input
-                                value={this.state.start}
-                                onChange={this.handleInputChange}
-                                name="start"
-                                placeholder="Start Date"
-                            />
-                            <Input
-                                value={this.state.end}
-                                onChange={this.handleInputChange}
-                                name="end"
-                                placeholder="End Date"
-                            />
-                            <Input
-                                value={this.state.tech}
-                                onChange={this.handleInputChange}
-                                name="jobTech"
-                                placeholder="Technologies Used"
-                            />
-                            <Input
-                                value={this.state.majorAccomplish}
-                                onChange={this.handleInputChange}
-                                name="majorAccomplish"
-                                placeholder="Major Accomplishment Achieved"
-                            />
-                            <Input
-                                value={this.state.project}
-                                onChange={this.handleInputChange}
-                                name="project"
-                                placeholder="Big project you've worked on"
-                            />
-                            <FormBtn
-                                disabled={!(this.state.compnayName && this.state.title && this.state.address && this.state.skills && this.state.start && this.state.end)}
-                                onClick={this.jobFormSubmit}
-                            >
-                                Submit new Job
-                            </FormBtn>
-
-                        </jobForm>
+                        <JobForm />
 
                     </Col>
                     <Col size="md-6 sm-12">
@@ -189,7 +132,7 @@ class Resume extends Component {
                         <h3>Your Jobs:</h3>
                         <List>
                             {this.state.jobs.map(job =>(
-                                <ListItem key={job.index}>
+                                <ul>
                                 <li>Company Name:{job.companyName}</li>
                                 <li>Title:{job.title}</li>
                                 <li>Address:{job.jobAddress}</li>
@@ -199,9 +142,10 @@ class Resume extends Component {
                                 <li>Technology:{job.jobTech}</li>
                                 <li>Major Accomplishment:{job.majorAccomplish}</li>
                                 <li>Big Project:{job.project}</li>
-                                </ListItem>
+                                </ul>
 
-                            ))}
+                            ))
+                            }
                         </List>
 
                     </Col>

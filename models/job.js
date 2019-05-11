@@ -7,7 +7,7 @@ const jobSchema = new Schema({
   jobAddress: {type : String, required: true},
   jobSkills: {type : String, required: true},
   start: { type: Number, required: true },
-  end: { type: Number, required: true },
+  end: { type: Number, required: false },
   jobTech: {type : String, required: true},
   majorAccomplish: {type : String, required: true},
   project: {type : String, required: true},

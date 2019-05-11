@@ -27,7 +27,7 @@ export default {
     return axios.post("/api/resume", resumeData);
   },
   getJob: function(){
-    return axios.get("/api/job")
+    return axios.get("/api/job/job")
   },
   saveJob: function(){
     return axios.post("api/job")
