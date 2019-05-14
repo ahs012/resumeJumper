@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 
+
 class CreateAccount extends Component {
     state = {
         firstName: '',
@@ -50,27 +51,35 @@ class CreateAccount extends Component {
 
     render() {
         return (
+            <div className="text-center" style={{ paddingBottom: '100px' }}>
             <form> Create An Account
+            <br/>
                 <input placeholder='First Name'
                     value={this.state.firstName}
                     name="firstName"
                     onChange={this.handleInputChange} />
+                    <br/>
                 <input placeholder='Last Name'
                     value={this.state.lastName}
                     name="lastName"
                     onChange={this.handleInputChange} />
+                    <br/>
                 <input placeholder='User Name'
                     value={this.state.userName}
                     name="userName"
                     onChange={this.handleInputChange} />
+                    <br/>
                 <input placeholder='Address'
                     value={this.state.address}
                     name="address"
                     onChange={this.handleInputChange} />
+                    <br/>
                 <input placeholder='Password'
                     value={this.state.password}
                     name="password"
                     onChange={this.handleInputChange} />
+                    <br/>
+                    <br/>
 
 
                 {/* <h5>Subscription Info</h5> */}
@@ -86,21 +95,27 @@ class CreateAccount extends Component {
                     value={this.state.cardNumber}
                     name="cardNumber"
                     onChange={this.handleInputChange} />
+                    <br/>
                 <input placeholder='MM/DD/YYYY'
                     value={this.state.date}
                     name="date"
                     onChange={this.handleInputChange} />
+                    <br/>
                 <input placeholder='CVV'
                     value={this.state.securityCode}
                     name="securityCode"
                     onChange={this.handleInputChange} />
+                    <br/>
                 <input placeholder='Postal'
                     value={this.state.postal}
                     name="postal"
                     onChange={this.handleInputChange} />
+                    <br/>
                 <button onClick={this.handleFormSubmit}>Create Account</button>
-
+                <br/>
+                
             </form>
+            </div>
         )
     }
 }
