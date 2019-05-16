@@ -15,7 +15,7 @@ class Login extends Component {
       handleFormSubmit = event => {
         event.preventDefault();
         const userName = localStorage.setItem('userData', JSON.stringify(this.state.userName));
-        
+        window.location="./profile";
       };
       
     render () {
