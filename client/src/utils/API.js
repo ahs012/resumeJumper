@@ -18,19 +18,21 @@ export default {
     return axios.post("/api/user", userData);
   },
   getResume: function() {
-    return axios.get("/api/resume");
+    return axios.get("/api/resume/resume");
   },
   deleteResume: function(name){
-    return axios.delete("/api/resume" + name)
+    return axios.delete("/api/resume/resume" + name)
   },
   saveResume: function(resumeData) {
-    return axios.post("/api/resume", resumeData);
+    console.log(resumeData);
+    return axios.post("/api/resume/resume", resumeData);
   },
   getJob: function(){
     return axios.get("/api/job/job")
   },
-  saveJob: function(){
-    return axios.post("api/job")
+  saveJob: function(jobData){
+    console.log("API job post hit", jobData)
+    return axios.post("api/job/job", jobData)
   },
   deleteJob: function(name){
     return axios.delete("/api/job" + name)

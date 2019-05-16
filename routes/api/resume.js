@@ -3,7 +3,7 @@ const resumeController = require("../../controllers/resumeController");
 
 // Matches with "/api/resume"
 router.route("/resume")
-  .get(resumeController.findByName)
+  .get(resumeController.findAll)
   .post(resumeController.create);
 
 // Matches with "/api/resume/:name"
