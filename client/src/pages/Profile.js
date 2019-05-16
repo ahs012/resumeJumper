@@ -3,8 +3,8 @@ import Jumbotron from '../components/Jumbotron';
 import {Col, Row, Container} from '../components/Grid';
 
 // Grabbing userName from Local Storage
-const userData = JSON.parse(localStorage.getItem("userData"));
-console.log(userData);
+// const userData = JSON.parse(localStorage.getItem("userData"));
+// console.log(userData);
 
 function Profile(){
     return(

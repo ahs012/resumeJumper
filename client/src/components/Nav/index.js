@@ -17,7 +17,7 @@ const Nav = props => (
           <li><a href="/Login">Member Login</a></li>
           <li><a href="/"></a></li>
           <li><a href="/Blog">Blog</a></li>
-
+          <li><a href="/resume">Resume</a></li>
         </ul>
       </div>
     </nav>

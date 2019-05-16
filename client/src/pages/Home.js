@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 // That way we don't have to define them all individually
 function Home(props) {
   return (
-     <div class="text-center"> 
+     <div className="text-center"> 
       
          <Container fluid>
         
