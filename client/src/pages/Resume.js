@@ -7,6 +7,8 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import JobForm from "../components/jobForm";
+import JobWrapper from "../components/jobWrapper"
+import JobCard from "../components/jobCard"
 
 class Resume extends Component {
     state = {
@@ -19,7 +21,7 @@ class Resume extends Component {
 
     componentDidMount() {
         this.loadResume();
-        this.loadJob();
+        this.loadJobs();
     }
 
     loadResume = () => {
@@ -30,11 +32,11 @@ class Resume extends Component {
             .catch(err => console.log(err));
     };
 
-    loadJob = () => {
+    loadJobs = () => {
         API.getJob()
             .then(res => {
                 console.log(res.data);
-                this.setState({ jobs: [res.data] });
+                this.setState({ jobs: res.data });
             })
             .catch(err => console.log(err));
     }
@@ -55,6 +57,7 @@ class Resume extends Component {
     ////////EDIT FORMS FOR RESUME////
     handleFormSubmit = event => {
         event.preventDefault();
+        console.log("route hit")
         if (this.state.name && this.state.skills && this.state.address && this.state.tech) {
             API.saveResume({
                 name: this.state.name,
@@ -62,7 +65,7 @@ class Resume extends Component {
                 skills: this.state.skills,
                 tech: this.state.tech
             })
-                .then(res => this.loadresume())
+                .then(res => this.loadResume())
                 .catch(err => console.log(err));
         }
     };
@@ -130,8 +133,23 @@ class Resume extends Component {
                             <li>Technologies:{this.state.tech}</li>
                         </List>
                         <h3>Your Jobs:</h3>
+
+                        {/* <JobWrapper>
+                            <JobCard
+                            companyName={}
+                            title={}
+                            jobAddress={}
+                            skills={}
+                            start={}
+                            end={}
+                            jobTech={}
+                            majorAccomplish={}
+                            project={}
+                            />
+                        </JobWrapper> */}
                         <List>
                             {this.state.jobs.map(job =>(
+                                <div>
                                 <ul>
                                 <li>Company Name:{job.companyName}</li>
                                 <li>Title:{job.title}</li>
@@ -143,6 +161,9 @@ class Resume extends Component {
                                 <li>Major Accomplishment:{job.majorAccomplish}</li>
                                 <li>Big Project:{job.project}</li>
                                 </ul>
+                                <br/>
+                                </div>
+                                
 
                             ))
                             }
