@@ -19,6 +19,7 @@ const Nav = props => (
           <li><a href="/Blog">Blog</a></li>
           <li><a href="/resume">Resume</a></li>
           <li><a href="/profile">Profile</a></li>
+          <li><a href="/">Logout</a></li>
         </ul>
       </div>
     </nav>
