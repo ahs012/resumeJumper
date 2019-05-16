@@ -17,3 +17,4 @@ const jobSchema = new Schema({
 const Job = mongoose.model("Jobs", jobSchema);
 
 module.exports = Job;
+//db.jobs.insertOne('companyName')
