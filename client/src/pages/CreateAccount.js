@@ -47,6 +47,7 @@ class CreateAccount extends Component {
                 // .then(res => this.loadUsers())
                 .catch(err => console.log(err));
         }
+       const user = localStorage.setItem('userData', JSON.stringify(this.state.userName));
     };
 
     render() {

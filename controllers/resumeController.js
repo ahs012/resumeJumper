@@ -2,10 +2,11 @@ const db = require("../models");
 
 module.exports={
     create: function(req, res) {
+      console.log(req);
         db.Resume
           .create(req.body)
           .then(dbModel => res.json(dbModel))
-          .catch(err => res.status(422).json(err));
+          .catch(err => res.status(500).json(err));
     },
     update: function(req, res) {
         db.Resume
@@ -23,6 +24,12 @@ module.exports={
         db.Resume
           .findByName({ _name: req.params.name })
           .then(dbModel => dbModel.remove())
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+      },
+      findAll: function(req, res) {
+        db.Resume
+          .find({})
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err));
       }

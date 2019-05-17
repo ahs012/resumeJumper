@@ -14,6 +14,7 @@ const jobSchema = new Schema({
   date: { type: Date, default: Date.now }
 });
 
-const Job = mongoose.model("Job", jobSchema);
+const Job = mongoose.model("Jobs", jobSchema);
 
 module.exports = Job;
+//db.jobs.insertOne('companyName')

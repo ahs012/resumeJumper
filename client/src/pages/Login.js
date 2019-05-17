@@ -4,7 +4,7 @@ import {Container} from "../components/Grid";
 
 class Login extends Component {
     state = {};
-
+    
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -14,12 +14,16 @@ class Login extends Component {
 
       handleFormSubmit = event => {
         event.preventDefault();
-        console.log(this.state)
-      };
 
+        const userEmail = localStorage.setItem('userEmail', JSON.stringify(this.state.email));
+
+        window.location="./profile";
+
+      };
+      
     render () {
         return(<form>Login
-            <input name="user-name" onChange={this.handleInputChange} type="text" placeholder="username"></input>
+            <input name="email" onChange={this.handleInputChange} type="text" placeholder="email"></input>
             <input name="password" onChange={this.handleInputChange} type="password" placeholder="password"></input>
             <input name="login-button" onClick={this.handleFormSubmit} type="submit"></input>
             <p>Need an Account?</p>
