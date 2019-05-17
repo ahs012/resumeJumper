@@ -6,8 +6,8 @@ export default {
     return axios.get("/api/user");
   },
   // Gets the user with the given name
-  getUser: function(name) {
-    return axios.get("/api/user/" + name);
+  getUser: function(email) {
+    return axios.get("/api/user/" + email);
   },
   // Deletes the user with the given name
   deleteUser: function(name) {

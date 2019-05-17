@@ -14,12 +14,13 @@ class Login extends Component {
 
       handleFormSubmit = event => {
         event.preventDefault();
-        const userName = localStorage.setItem('userData', JSON.stringify(this.state.userName));
+        const userEmail = localStorage.setItem('userEmail', JSON.stringify(this.state.email));
+        console.log(this.state);
       };
       
     render () {
         return(<form>Login
-            <input name="userName" onChange={this.handleInputChange} type="text" placeholder="username"></input>
+            <input name="email" onChange={this.handleInputChange} type="text" placeholder="email"></input>
             <input name="password" onChange={this.handleInputChange} type="password" placeholder="password"></input>
             <input name="login-button" onClick={this.handleFormSubmit} type="submit"></input>
         </form>)
