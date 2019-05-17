@@ -11,24 +11,21 @@ import Jumbotron from "./components/Jumbotron";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import Main from "./pages/Main";
+import { Container } from "./components/Grid";
+import './components/Background/background.css';
+
+
 
 
 function App() {
   return (
+    
     <Router>
+      <body className='body'>
       <div>
         <Nav />
       <main style={{marginTop: '64px'}}></main>
-        <Jumbotron>
-             <h1>Resume Jumper</h1>
-             <br/>
-             <h2>Your resume manager!</h2>
-             <br/>
-             <p>
-                 Jump from job to job and just own it. 
-             </p>
-        </Jumbotron> 
-
+     
         <Switch>
           <Route exact path="/" component={Home} />  
           <Route exact path="/Login" component={Login} />  
@@ -42,8 +39,11 @@ function App() {
         </Switch>
         <Footer />
       </div>
+      </body>
     </Router>
   );
 }
+
+
 
 export default App;
