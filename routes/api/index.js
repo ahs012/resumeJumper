@@ -5,11 +5,7 @@ const jobRoutes = require('./job');
 // user routes
 router.use("/user", userRoutes);
 router.use("/resume", resumeRoutes);
-router.use('/job', (req, res, next) => {
-    console.log('/api/job route hit');
-    next();
-},
-jobRoutes);
+router.use('/job', jobRoutes);
 
 module.exports = router;
 

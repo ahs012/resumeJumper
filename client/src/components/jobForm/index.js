@@ -1,21 +1,26 @@
 import React, {Component } from "react";
 import API from '../../utils/API';
 import {Input, TextArea, FormBtn} from "../Form";
+import JobCard from "../jobCard/"
 
 
 class JobForm extends Component {
   state = {
-    job: [],
+    jobs: [],
     companyName: "",
     title: "",
     jobAddress: "",
     start: "",
     end: "",
     jobTech: "",
+    jobSkills:"",
     majorAccomplish: "",
     project: ""
   }
-
+  componentDidMount() {
+    
+    this.loadJobs();
+}
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -25,21 +30,25 @@ class JobForm extends Component {
   };
 
   jobFormSubmit = event => {
-    event.preventDefault();
-    if (this.state.companyName && this.state.title && this.state.jobAddress && this.state.start && this.state.end) {
-      API.saveJob({
-        companyName: this.state.companyName,
-        title: this.state.title,
-        jobAddress: this.state.jobAddress,
-        start: this.state.start,
-        end: this.state.end,
-        jobTech: this.state.jobTech,
-        majorAccomplish: this.state.majorAccomplish,
-        project: this.state.project
-      })
+     event.preventDefault();
+    // if (this.state.companyName && this.state.title && this.state.jobAddress && this.state.start) {
+    console.log(this.state)
+    const { companyName, title, start, jobAddress, jobSkills, end,jobTech,majorAccomplish,project } = this.state;
+    const body = {
+      companyName,
+      title,
+      jobAddress,
+      jobSkills,
+      start,
+      end,
+      jobTech,
+      majorAccomplish,
+      project
+    }
+      API.saveJob(body)
         .then(res => this.loadJobs())
         .catch(err => console.log(err));
-    }
+    // }
   };
 
   loadJobs(props) {
@@ -82,6 +91,12 @@ class JobForm extends Component {
           placeholder="Job Address"
         />
         <Input
+          value={this.state.skills}
+          onChange={this.handleInputChange}
+          name="jobSkills"
+          placeholder="Job Skills"
+        />
+        <Input
           value={this.state.start}
           onChange={this.handleInputChange}
           name="start"
@@ -112,13 +127,25 @@ class JobForm extends Component {
           placeholder="Big project you've worked on"
         />
         <FormBtn
-          disabled={!(this.state.compnayName && this.state.title && this.state.address && this.state.skills && this.state.start && this.state.end)}
+          // disabled={!(this.state.compnayName && this.state.title && this.state.address && this.state.skills && this.state.start && this.state.end)}
           onClick={this.jobFormSubmit}
         >
           Submit new Job
       </FormBtn>
         {/* {this.state.jobs.map((job) =>
-          <li>{job}</li>
+          // <JobCard
+          // companyName={job.companyName}
+          // title={job.title}
+          // jobAddress={job.jobAddress}
+          // start={job.start}
+          // end={job.end}
+          // jobTech={job.jobTech}
+          // jobSkills={job.jobSkills}
+          // project={job.project}
+          // majorAccomplish={job.majorAccomplish}
+          // />
+          // <li>{job.companyName}</li>
+          
         )} */}
       </div>
     )
