@@ -22,7 +22,9 @@ class Login extends Component {
             <input name="user-name" onChange={this.handleInputChange} type="text" placeholder="username"></input>
             <input name="password" onChange={this.handleInputChange} type="password" placeholder="password"></input>
             <input name="login-button" onClick={this.handleFormSubmit} type="submit"></input>
-        </form>)
+            <p>Need an Account?</p>
+            <a id="signUp" href="/CreateAccount">Sign Up</a>
+        </form>) 
     }
 }
 
