@@ -12,6 +12,7 @@ module.exports = {
   findOne: function(req, res) {
     db.User
       .find({email : req.params.name})
+      .populate("resume")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

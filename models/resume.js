@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const resumeSchema = new Schema({
+  owner:{
+    type:String
+   
+  },
   name: { type: String, required: true },
   jobs: [{
       type:Schema.Types.ObjectId,

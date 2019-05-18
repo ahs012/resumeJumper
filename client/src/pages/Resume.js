@@ -16,30 +16,25 @@ class Resume extends Component {
         name: "",
         address: "",
         skills: "",
-        tech: ""
+        tech: "",
+        owner: "",
+        currentResume: []
     };
 
     componentDidMount() {
-        this.loadResume();
-        this.loadJobs();
+        const email = JSON.parse(localStorage.getItem("userData"))
+        const promiseArr = [this.loadResume(email),
+        this.loadJobs()]
+        Promise.all(promiseArr).then((allOfTheDatas) => {
+            const resumeData = allOfTheDatas[0].data; 
+            const jobData = allOfTheDatas[1].data; 
+            this.setState({owner:email, jobs:jobData, currentResume: resumeData})
+        })
     }
 
-    loadResume = () => {
-        API.getResume()
-            .then(res => {
-                this.setState({ resume: res.data });
-            })
-            .catch(err => console.log(err));
-    };
+    loadResume = (email) => API.getResume(email)
 
-    loadJobs = () => {
-        API.getJob()
-            .then(res => {
-                console.log(res.data);
-                this.setState({ jobs: res.data });
-            })
-            .catch(err => console.log(err));
-    }
+    loadJobs = () => API.getJob()
 
     deleteResume = name => {
         API.deleteResume(name)
@@ -59,11 +54,13 @@ class Resume extends Component {
         event.preventDefault();
         console.log("route hit")
         if (this.state.name && this.state.skills && this.state.address && this.state.tech) {
+            const email = JSON.parse(localStorage.getItem("userData"))
             API.saveResume({
                 name: this.state.name,
                 address: this.state.address,
                 skills: this.state.skills,
-                tech: this.state.tech
+                tech: this.state.tech,
+                owner: email ? email : "chern@test.com"
             })
                 .then(res => this.loadResume())
                 .catch(err => console.log(err));
@@ -71,7 +68,7 @@ class Resume extends Component {
     };
 
     jobFormSubmit = event => {
-       
+
 
     }
 
@@ -118,7 +115,7 @@ class Resume extends Component {
                         <br></br>
 
                         <h1>Add jobs</h1>
-                        <JobForm />
+                        <JobForm currentResume={this.state.currentResume[0]} />
 
                     </Col>
                     <Col size="md-6 sm-12">
@@ -148,22 +145,22 @@ class Resume extends Component {
                             />
                         </JobWrapper> */}
                         <List>
-                            {this.state.jobs.map(job =>(
+                            {this.state.jobs.map(job => (
                                 <div>
-                                <ul>
-                                <li>Company Name:{job.companyName}</li>
-                                <li>Title:{job.title}</li>
-                                <li>Address:{job.jobAddress}</li>
-                                <li>Skills:{job.skills}</li>
-                                <li>Start Date:{job.start}</li>
-                                <li>End Date:{job.end}</li>
-                                <li>Technology:{job.jobTech}</li>
-                                <li>Major Accomplishment:{job.majorAccomplish}</li>
-                                <li>Big Project:{job.project}</li>
-                                </ul>
-                                <br/>
+                                    <ul>
+                                        <li>Company Name:{job.companyName}</li>
+                                        <li>Title:{job.title}</li>
+                                        <li>Address:{job.jobAddress}</li>
+                                        <li>Skills:{job.skills}</li>
+                                        <li>Start Date:{job.start}</li>
+                                        <li>End Date:{job.end}</li>
+                                        <li>Technology:{job.jobTech}</li>
+                                        <li>Major Accomplishment:{job.majorAccomplish}</li>
+                                        <li>Big Project:{job.project}</li>
+                                    </ul>
+                                    <br />
                                 </div>
-                                
+
 
                             ))
                             }

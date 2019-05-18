@@ -17,8 +17,9 @@ export default {
   saveUser: function(userData) {
     return axios.post("/api/user", userData);
   },
-  getResume: function() {
-    return axios.get("/api/resume/resume");
+  getResume: function(userData) {
+    // return axios.get("/api/resume/resume", userData);
+    return axios.get("/api/resume/resume/" + userData)
   },
   deleteResume: function(name){
     return axios.delete("/api/resume/resume" + name)

@@ -32,10 +32,13 @@ class JobForm extends Component {
   jobFormSubmit = event => {
      event.preventDefault();
     // if (this.state.companyName && this.state.title && this.state.jobAddress && this.state.start) {
-    console.log(this.state)
+    const currentRes = this.props.currentResume._id;
+  
+    console.log(currentRes);
     const { companyName, title, start, jobAddress, jobSkills, end,jobTech,majorAccomplish,project } = this.state;
     const body = {
       companyName,
+      currentRes,
       title,
       jobAddress,
       jobSkills,
