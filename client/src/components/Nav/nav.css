@@ -29,7 +29,7 @@
  
 .navItem a:hover,
 .navItem a:active{
-    color: black;
+    color: #000080;
 }
 
 .navItem ul{

@@ -52,8 +52,12 @@ class CreateAccount extends Component {
 
     render() {
         return (
-            <div className="text-center" style={{ paddingBottom: '100px' }}>
-            <form> Create An Account
+            <div className="text-center" style={{ paddingBottom: '100px', paddingTop: '5%' }}>
+            <form> 
+                <h1 style={{color: '#000080'}}>Create An Account</h1>
+                <p>Already have a Resume Ready Account?
+                <a id="logIn" href="/Login" style={{color: '#000080'}}>Log in</a>
+                </p>
             <br/>
                 <input placeholder='First Name'
                     value={this.state.firstName}
@@ -112,7 +116,7 @@ class CreateAccount extends Component {
                     name="postal"
                     onChange={this.handleInputChange} />
                     <br/>
-                <button onClick={this.handleFormSubmit}>Create Account</button>
+                <button onClick={this.handleFormSubmit} className="btn btn-warning" style={{color:'#000080', margin:'2%' }}>Create Account</button>
                 <br/>
                 
             </form>

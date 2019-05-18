@@ -1,6 +1,4 @@
 import React, {Component} from "react";
-import Jumbotron from "../components/Jumbotron";
-import {Container} from "../components/Grid";
 
 class Login extends Component {
     state = {};
@@ -22,13 +20,17 @@ class Login extends Component {
       };
       
     render () {
-        return(<form>Login
+        return(
+          <div className="text-center" style={{ paddingBottom: '100px', paddingTop: '5%' }}>
+        <form>
+          <h1 style={{color: '#000080'}}>Login</h1>
             <input name="email" onChange={this.handleInputChange} type="text" placeholder="email"></input>
             <input name="password" onChange={this.handleInputChange} type="password" placeholder="password"></input>
-            <input name="login-button" onClick={this.handleFormSubmit} type="submit"></input>
+            <input name="login-button" onClick={this.handleFormSubmit} type="submit" className="btn btn-warning" style={{color:'#000080' }}></input>
             <p>Need an Account?</p>
-            <a id="signUp" href="/CreateAccount">Sign Up</a>
-        </form>) 
+            <a id="signUp" href="/CreateAccount" style={{color: '#000080'}}>Sign Up</a>
+        </form>
+        </div>) 
     }
 }
 

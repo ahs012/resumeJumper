@@ -7,7 +7,6 @@ import Nav from "./components/Nav";
 import Resume from "./pages/Resume";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Jumbotron from "./components/Jumbotron";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import Main from "./pages/Main";
