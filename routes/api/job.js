@@ -8,8 +8,8 @@ router.route("/job")
 
 // Matches with "/api/job/:name"
 router
-  .route("/:name")
-  .get(jobController.get)
+  .route("/job/:name")
+  .get(jobController.getJobByResume)
   .put(jobController.update)
   .delete(jobController.remove);
 

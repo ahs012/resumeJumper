@@ -18,7 +18,7 @@ module.exports={
     },
     update: function(req, res) {
         db.Resume
-          .findOneAndUpdate({ _name: req.params.name }, req.body)
+          .findOneAndUpdate({owner: req.params.name }, req.body)
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err));
       },

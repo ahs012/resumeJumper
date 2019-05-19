@@ -1,4 +1,5 @@
 import React from "react";
+import Resume from "../../pages/Resume";
 
 function JobCard(prop){
     return (

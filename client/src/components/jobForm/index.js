@@ -18,8 +18,8 @@ class JobForm extends Component {
     project: ""
   }
   componentDidMount() {
-    
-    this.loadJobs();
+    const currentRes = this.props.currentResume;
+    this.loadJobs(currentRes);
 }
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -55,8 +55,11 @@ class JobForm extends Component {
   };
 
   loadJobs(props) {
-    API.getJob()
+    const currentRes = this.props.currentResume;
+    console.log(currentRes);
+    API.getJobByResume()
       .then(res => {
+        console.log(res.data);
         this.setState({ jobs: res.data });
       })
       .catch(err => console.log(err));

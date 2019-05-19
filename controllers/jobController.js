@@ -50,6 +50,14 @@ module.exports={
           .catch(err => res.status(500).json(err));
       },
 
+      getJobByResume: function(req,res){
+        console.log(req.params);
+        db.Job
+          .findById({_id:req.body.currentResume})
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(500).json(err));
+      },
+
       remove: function(req, res) {
         db.Job
           .findByName({ _name: req.params.name })

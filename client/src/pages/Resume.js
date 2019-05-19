@@ -7,8 +7,10 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import JobForm from "../components/jobForm";
-import JobWrapper from "../components/jobWrapper"
-import JobCard from "../components/jobCard"
+import JobWrapper from "../components/jobWrapper";
+import JobCard from "../components/jobCard";
+import ResumeCard from "../components/resumeCard";
+import { set } from "mongoose";
 
 class Resume extends Component {
     state = {
@@ -18,23 +20,37 @@ class Resume extends Component {
         skills: "",
         tech: "",
         owner: "",
-        currentResume: []
+        currentResume: [],
+        allResumes: []
     };
 
     componentDidMount() {
+
         const email = JSON.parse(localStorage.getItem("userData"))
-        const promiseArr = [this.loadResume(email),
-        this.loadJobs()]
+        const promiseArr = [
+            this.loadResume(email),
+            this.loadJobs(this.state.allResumes)
+        ]
         Promise.all(promiseArr).then((allOfTheDatas) => {
-            const resumeData = allOfTheDatas[0].data; 
-            const jobData = allOfTheDatas[1].data; 
-            this.setState({owner:email, jobs:jobData, currentResume: resumeData})
+            console.log(allOfTheDatas);
+            const resumeData = allOfTheDatas[0].data;
+            const jobData = allOfTheDatas[1].data;
+            this.setState({ owner: email, jobs: jobData, allResumes: resumeData })
         })
     }
 
     loadResume = (email) => API.getResume(email)
 
-    loadJobs = () => API.getJob()
+    loadJobs = (allResumes) => API.getJobByResume(allResumes)
+
+    resumeClicked =(id)=> {
+        console.log(id);
+        // set button press to get resume ID
+        //update current resume state with resume ID
+        //plug currentResume into getjob param
+
+        // this.setState({currentResume})
+    };
 
     deleteResume = name => {
         API.deleteResume(name)
@@ -115,7 +131,7 @@ class Resume extends Component {
                         <br></br>
 
                         <h1>Add jobs</h1>
-                        <JobForm currentResume={this.state.currentResume[0]} />
+                        <JobForm allResumes={this.state.allResumes} />
 
                     </Col>
                     <Col size="md-6 sm-12">
@@ -128,6 +144,21 @@ class Resume extends Component {
                             <li>Address:{this.state.address}</li>
                             <li>Skills:{this.state.skills}</li>
                             <li>Technologies:{this.state.tech}</li>
+                            {this.state.allResumes.map(resume => {
+                                return (<ResumeCard
+                                    name={resume.name}
+                                    address={resume.address}
+                                    skills={resume.skills}
+                                    tech={resume.tech}
+                                    date={resume.date}
+                                    key={resume._id}
+                                    id={resume._id}
+                                    clicked={this.resumeClicked}
+                                />)
+
+                            })
+
+                            }
                         </List>
                         <h3>Your Jobs:</h3>
 
