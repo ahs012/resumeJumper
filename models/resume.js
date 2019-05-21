@@ -9,7 +9,7 @@ const resumeSchema = new Schema({
   name: { type: String, required: true },
   jobs: [{
       type:Schema.Types.ObjectId,
-      ref: "Job"
+      ref: "Jobs"
     }],
   address: {type : String, required: true},
   skills: {type : String, required: true},

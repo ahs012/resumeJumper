@@ -32,6 +32,7 @@ export default {
     return axios.get("/api/job/job")
   },
   getJobByResume: function(resumeId){
+    console.log("getting Job: " + resumeId)
     return axios.get("/api/job/job/" + resumeId)
   },
   saveJob: function(jobData){

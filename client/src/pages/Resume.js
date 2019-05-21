@@ -20,7 +20,7 @@ class Resume extends Component {
         skills: "",
         tech: "",
         owner: "",
-        currentResume: [],
+        currentResume: "",
         allResumes: []
     };
 
@@ -29,25 +29,26 @@ class Resume extends Component {
         const email = JSON.parse(localStorage.getItem("userData"))
         const promiseArr = [
             this.loadResume(email),
-            this.loadJobs(this.state.allResumes)
+            
         ]
         Promise.all(promiseArr).then((allOfTheDatas) => {
             console.log(allOfTheDatas);
             const resumeData = allOfTheDatas[0].data;
-            const jobData = allOfTheDatas[1].data;
-            this.setState({ owner: email, jobs: jobData, allResumes: resumeData })
+            
+            this.setState({ owner: email, allResumes: resumeData })
         })
     }
 
     loadResume = (email) => API.getResume(email)
 
-    loadJobs = (currentResume) => API.getJobByResume(currentResume)
+    loadJobs = (currentResume) => API.getJobByResume(currentResume).then(data=> this.setState({jobs:data.data}))
 
     resumeClicked =(id)=> {
         console.log(id);
         this.setState({
             currentResume: id
         })
+        this.loadJobs(id);
         // set button press to get resume ID
         //update current resume state with resume ID
         //plug currentResume into getjob param
@@ -72,6 +73,7 @@ class Resume extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         console.log("route hit")
+        
         if (this.state.name && this.state.skills && this.state.address && this.state.tech) {
             const email = JSON.parse(localStorage.getItem("userData"))
             API.saveResume({
@@ -81,7 +83,7 @@ class Resume extends Component {
                 tech: this.state.tech,
                 owner: email ? email : "chern@test.com"
             })
-                .then(res => this.loadResume())
+                .then(res => this.loadResume(email))
                 .catch(err => console.log(err));
         }
     };
@@ -134,7 +136,9 @@ class Resume extends Component {
                         <br></br>
 
                         <h1>Add jobs</h1>
-                        <JobForm allResumes={this.state.allResumes} />
+                        <JobForm allResumes={this.state.allResumes}
+                        currentRes={this.state.currentResume}
+                        />
 
                     </Col>
                     <Col size="md-6 sm-12">

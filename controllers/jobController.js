@@ -52,10 +52,13 @@ module.exports={
 
       getJobByResume: function(req,res){
         console.log(req.params);
-        db.Job
-          .findById({_id:req.body.currentResume})
-          .then(dbModel => res.json(dbModel))
-          .catch(err => res.status(500).json(err));
+        db.Resume
+          .findById({_id:req.params.resId}).populate("jobs")
+          .then(dbModel => {
+            console.log(dbModel);
+            
+                        res.json(dbModel.jobs)})
+          .catch(err =>console.log(err));
       },
 
       remove: function(req, res) {

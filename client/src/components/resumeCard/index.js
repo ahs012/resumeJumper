@@ -24,7 +24,10 @@ function resumeCard(prop){
             <strong>Tech:</strong>{prop.tech}
           </li>
         </ul>
-        <button onClick={()=>prop.clicked(prop.id)}>Select this Resume</button>
+        <button onClick={()=>
+          prop.clicked(prop.id)}
+          // .then loadJobs();}
+        >Select this Resume</button>
       </div>
     </div>
     )

@@ -15,11 +15,12 @@ class JobForm extends Component {
     jobTech: "",
     jobSkills:"",
     majorAccomplish: "",
-    project: ""
+    project: "",
+    currentResume:this.props.currentRes
   }
   componentDidMount() {
     const currentRes = this.props.currentResume;
-    this.loadJobs(currentRes);
+    // this.loadJobs(currentRes);
 }
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -32,7 +33,7 @@ class JobForm extends Component {
   jobFormSubmit = event => {
      event.preventDefault();
     // if (this.state.companyName && this.state.title && this.state.jobAddress && this.state.start) {
-    const currentRes = this.props.currentResume._id;
+    const currentRes = this.state.currentResume;
   
     console.log(currentRes);
     const { companyName, title, start, jobAddress, jobSkills, end,jobTech,majorAccomplish,project } = this.state;
@@ -57,7 +58,7 @@ class JobForm extends Component {
   loadJobs(props) {
     const currentRes = this.props.currentResume;
     console.log(currentRes);
-    API.getJobByResume()
+    API.getJobByResume(currentRes)
       .then(res => {
         console.log(res.data);
         this.setState({ jobs: res.data });
