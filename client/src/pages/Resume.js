@@ -41,10 +41,13 @@ class Resume extends Component {
 
     loadResume = (email) => API.getResume(email)
 
-    loadJobs = (allResumes) => API.getJobByResume(allResumes)
+    loadJobs = (currentResume) => API.getJobByResume(currentResume)
 
     resumeClicked =(id)=> {
         console.log(id);
+        this.setState({
+            currentResume: id
+        })
         // set button press to get resume ID
         //update current resume state with resume ID
         //plug currentResume into getjob param
@@ -61,7 +64,7 @@ class Resume extends Component {
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-            [name]: value,
+            [name]: value
 
         });
     };
@@ -140,10 +143,10 @@ class Resume extends Component {
                         </Jumbotron>
                         <h3>Your info:</h3>
                         <List>
-                            <li>Name:{this.state.name}</li>
+                            {/* <li>Name:{this.state.name}</li>
                             <li>Address:{this.state.address}</li>
                             <li>Skills:{this.state.skills}</li>
-                            <li>Technologies:{this.state.tech}</li>
+                            <li>Technologies:{this.state.tech}</li> */}
                             {this.state.allResumes.map(resume => {
                                 return (<ResumeCard
                                     name={resume.name}
