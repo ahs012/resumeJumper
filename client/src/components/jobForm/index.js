@@ -16,11 +16,12 @@ class JobForm extends Component {
     jobSkills:"",
     majorAccomplish: "",
     project: "",
-    currentResume:this.props.currentRes
+
   }
   componentDidMount() {
-    const currentRes = this.props.currentResume;
-    // this.loadJobs(currentRes);
+
+    const currentRes = this.state.currentResume;
+    console.log(this.props);
 }
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -33,9 +34,9 @@ class JobForm extends Component {
   jobFormSubmit = event => {
      event.preventDefault();
     // if (this.state.companyName && this.state.title && this.state.jobAddress && this.state.start) {
-    const currentRes = this.state.currentResume;
+    const currentRes = this.props.currentRes;
   
-    console.log(currentRes);
+    console.log(this.props);
     const { companyName, title, start, jobAddress, jobSkills, end,jobTech,majorAccomplish,project } = this.state;
     const body = {
       companyName,
@@ -50,27 +51,18 @@ class JobForm extends Component {
       project
     }
       API.saveJob(body)
-        .then(res => this.loadJobs())
+        .then(res => this.props.reloadJobs(currentRes))
         .catch(err => console.log(err));
     // }
   };
 
-  loadJobs(props) {
-    const currentRes = this.props.currentResume;
-    console.log(currentRes);
-    API.getJobByResume(currentRes)
-      .then(res => {
-        console.log(res.data);
-        this.setState({ jobs: res.data });
-      })
-      .catch(err => console.log(err));
-
+ 
 
 
     // return (
     //   // <ul>{listItems}</ul>
     // );
-  }
+  
 
 
 
@@ -136,24 +128,10 @@ class JobForm extends Component {
         <FormBtn
           // disabled={!(this.state.compnayName && this.state.title && this.state.address && this.state.skills && this.state.start && this.state.end)}
           onClick={this.jobFormSubmit}
+
         >
           Submit new Job
       </FormBtn>
-        {/* {this.state.jobs.map((job) =>
-          // <JobCard
-          // companyName={job.companyName}
-          // title={job.title}
-          // jobAddress={job.jobAddress}
-          // start={job.start}
-          // end={job.end}
-          // jobTech={job.jobTech}
-          // jobSkills={job.jobSkills}
-          // project={job.project}
-          // majorAccomplish={job.majorAccomplish}
-          // />
-          // <li>{job.companyName}</li>
-          
-        )} */}
       </div>
     )
   }

@@ -10,7 +10,6 @@ import JobForm from "../components/jobForm";
 import JobWrapper from "../components/jobWrapper";
 import JobCard from "../components/jobCard";
 import ResumeCard from "../components/resumeCard";
-import { set } from "mongoose";
 
 class Resume extends Component {
     state = {
@@ -25,14 +24,12 @@ class Resume extends Component {
     };
 
     componentDidMount() {
-
         const email = JSON.parse(localStorage.getItem("userData"))
         const promiseArr = [
             this.loadResume(email),
             
         ]
         Promise.all(promiseArr).then((allOfTheDatas) => {
-            console.log(allOfTheDatas);
             const resumeData = allOfTheDatas[0].data;
             
             this.setState({ owner: email, allResumes: resumeData })
@@ -40,20 +37,13 @@ class Resume extends Component {
     }
 
     loadResume = (email) => API.getResume(email)
+    
 
-    loadJobs = (currentResume) => API.getJobByResume(currentResume).then(data=> this.setState({jobs:data.data}))
+    loadJobs = (currentResume, saveID) => API.getJobByResume(currentResume)
+        .then(data=> saveID ? this.setState({jobs:data.data, currentResume: currentResume} ) : this.setState({jobs:data.data}))
 
     resumeClicked =(id)=> {
-        console.log(id);
-        this.setState({
-            currentResume: id
-        })
-        this.loadJobs(id);
-        // set button press to get resume ID
-        //update current resume state with resume ID
-        //plug currentResume into getjob param
-
-        // this.setState({currentResume})
+        this.loadJobs(id, true);
     };
 
     deleteResume = name => {
@@ -69,30 +59,27 @@ class Resume extends Component {
 
         });
     };
-    ////////EDIT FORMS FOR RESUME////
+  
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log("route hit")
-        
         if (this.state.name && this.state.skills && this.state.address && this.state.tech) {
             const email = JSON.parse(localStorage.getItem("userData"))
+            // save resume 
             API.saveResume({
                 name: this.state.name,
                 address: this.state.address,
                 skills: this.state.skills,
                 tech: this.state.tech,
                 owner: email ? email : "chern@test.com"
-            })
-                .then(res => this.loadResume(email))
-                .catch(err => console.log(err));
+            }).then(res => {
+                // reload resumes
+                this.loadResume(email).then((data)=> 
+                this.setState({allResumes: data.data, name:"", skills:"", address:"", tech:""}))
+            }).catch(err => console.log(err));
         }
     };
 
-    jobFormSubmit = event => {
-
-
-    }
-
+    
     render() {
         return (
             <Container fluid>
@@ -136,8 +123,11 @@ class Resume extends Component {
                         <br></br>
 
                         <h1>Add jobs</h1>
-                        <JobForm allResumes={this.state.allResumes}
+                        <JobForm 
+                        allResumes={this.state.allResumes}
                         currentRes={this.state.currentResume}
+                        formSubmit={this.job}
+                        reloadJobs={this.loadJobs}
                         />
 
                     </Col>
@@ -147,10 +137,7 @@ class Resume extends Component {
                         </Jumbotron>
                         <h3>Your info:</h3>
                         <List>
-                            {/* <li>Name:{this.state.name}</li>
-                            <li>Address:{this.state.address}</li>
-                            <li>Skills:{this.state.skills}</li>
-                            <li>Technologies:{this.state.tech}</li> */}
+                    
                             {this.state.allResumes.map(resume => {
                                 return (<ResumeCard
                                     name={resume.name}
@@ -169,19 +156,6 @@ class Resume extends Component {
                         </List>
                         <h3>Your Jobs:</h3>
 
-                        {/* <JobWrapper>
-                            <JobCard
-                            companyName={}
-                            title={}
-                            jobAddress={}
-                            skills={}
-                            start={}
-                            end={}
-                            jobTech={}
-                            majorAccomplish={}
-                            project={}
-                            />
-                        </JobWrapper> */}
                         <List>
                             {this.state.jobs.map(job => (
                                 <div>

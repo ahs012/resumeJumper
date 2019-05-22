@@ -3,7 +3,6 @@ const db = require("../models");
 module.exports={
     create: function(req, res) {
       console.log("job create hit");
-      console.log("request: "+req); 
       const {      
         companyName,
         title,
@@ -43,7 +42,7 @@ module.exports={
       },
 
       get: function(req, res) {
-        console.log('route hit')
+        console.log('route hitRS')
         db.Job
           .find({})
           .then(dbModel => res.json(dbModel))
@@ -51,13 +50,10 @@ module.exports={
       },
 
       getJobByResume: function(req,res){
-        console.log(req.params);
         db.Resume
           .findById({_id:req.params.resId}).populate("jobs")
           .then(dbModel => {
-            console.log(dbModel);
-            
-                        res.json(dbModel.jobs)})
+              res.json(dbModel.jobs)})
           .catch(err =>console.log(err));
       },
 

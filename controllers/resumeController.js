@@ -2,7 +2,6 @@ const db = require("../models");
 
 module.exports={
     create: function(req, res) {
-      
         db.Resume
           .create(req.body)
           .then(dbModel => {
@@ -10,7 +9,7 @@ module.exports={
             const {_id}=dbModel;
             console.log(_id)
              db.User.findOneAndUpdate({userName:req.body.owner}, {$push:{resume:_id}}, {new:true})
-            .then((user) => console.log(user));
+            .then((user) => res.send(dbModel) );
           })
           .catch(err => {
             console.log(err);
