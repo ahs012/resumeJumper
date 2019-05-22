@@ -2,21 +2,28 @@ const db = require("../models");
 
 module.exports={
     create: function(req, res) {
-      console.log(req);
         db.Resume
           .create(req.body)
-          .then(dbModel => res.json(dbModel))
-          .catch(err => res.status(500).json(err));
+          .then(dbModel => {
+            console.log(dbModel)
+            const {_id}=dbModel;
+            console.log(_id)
+             db.User.findOneAndUpdate({userName:req.body.owner}, {$push:{resume:_id}}, {new:true})
+            .then((user) => res.send(dbModel) );
+          })
+          .catch(err => {
+            console.log(err);
+            res.status(500).json(err)});
     },
     update: function(req, res) {
         db.Resume
-          .findOneAndUpdate({ _name: req.params.name }, req.body)
+          .findOneAndUpdate({owner: req.params.name }, req.body)
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err));
       },
       findByName: function(req, res) {
         db.Resume
-          .findByName(req.params.name)
+          .find({owner:req.params.name})
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err));
       },
@@ -30,6 +37,12 @@ module.exports={
       findAll: function(req, res) {
         db.Resume
           .find({})
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+      },
+      find: function(req, res) {
+        db.Resume
+          .find({ _owner: req.params.name })
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err));
       }
