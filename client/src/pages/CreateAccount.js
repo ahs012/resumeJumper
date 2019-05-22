@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-
+import  '../components/Background/background.css'
 
 class CreateAccount extends Component {
     state = {
@@ -47,16 +47,15 @@ class CreateAccount extends Component {
                 // .then(res => this.loadUsers())
                 .catch(err => console.log(err));
         }
-       const user = localStorage.setItem('userData', JSON.stringify(this.state.userName));
     };
 
     render() {
         return (
             <div className="text-center" style={{ paddingBottom: '100px', paddingTop: '5%' }}>
             <form> 
-                <h1 style={{color: '#000080'}}>Create An Account</h1>
+                <h1 style={{color: '#000080'}}>Get Started - Create An Account</h1>
                 <p>Already have a Resume Ready Account?
-                <a id="logIn" href="/Login" style={{color: '#000080'}}>Log in</a>
+                <a id="logIn" href="/Login" style={{color: '#000080', padding: '.5%'}}>Log in</a>
                 </p>
             <br/>
                 <input placeholder='First Name'
@@ -118,7 +117,7 @@ class CreateAccount extends Component {
                     <br/>
                 <button onClick={this.handleFormSubmit} className="btn btn-warning" style={{color:'#000080', margin:'2%' }}>Create Account</button>
                 <br/>
-                
+                <p style={{opacity: '0.5'}}>*By signing up, you agree to our Terms of Use and to receive Resume Ready emails & updates and acknowledge that you read our Privacy Policy.</p>
             </form>
             </div>
         )
