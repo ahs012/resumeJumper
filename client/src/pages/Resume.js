@@ -9,6 +9,7 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 import JobForm from "../components/jobForm";
 import JobWrapper from "../components/jobWrapper"
 import JobCard from "../components/jobCard"
+import '../components/Form/form.css'
 
 class Resume extends Component {
     state = {
@@ -94,7 +95,7 @@ class Resume extends Component {
                                 value={this.state.skills}
                                 onChange={this.handleInputChange}
                                 name="skills"
-                                placeholder="enter your skills"
+                                placeholder="Enter your Skills"
                             />
                             <Input
                                 value={this.state.address}
@@ -106,18 +107,18 @@ class Resume extends Component {
                                 value={this.state.tech}
                                 onChange={this.handleInputChange}
                                 name="tech"
-                                placeholder="Technologies known"
+                                placeholder="Technologies Known"
                             />
                             <FormBtn
                                 disabled={!(this.state.name && this.state.skills && this.state.address && this.state.tech)}
                                 onClick={this.handleFormSubmit}
                             >
-                                Submit resume
+                                Submit Resume
                             </FormBtn>
                         </form>
                         <br></br>
 
-                        <h1>Add jobs</h1>
+                        <h1>Add Jobs</h1>
                         <JobForm />
 
                     </Col>
