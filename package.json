@@ -23,10 +23,12 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "express": "^4.16.4",
+    "i": "^0.3.6",
     "if-env": "^1.0.4",
     "mdbreact": "^4.13.0",
     "mongoose": "^5.5.5",
-    "react-bootstrap": "^1.0.0-beta.8",
-    "react-dom": "^16.8.6"
+    "npm": "^6.9.0",
+    "react-dom": "^16.8.6",
+    "reactstrap": "^8.0.0"
   }
 }

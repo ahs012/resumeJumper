@@ -2,13 +2,13 @@
     width: 100%;
     position: fixed;
     background-color: white;
-    height: 56px;
+    height: 76px;
     top: 0;
     left: 0;
+    z-index: 10000;
 }
 
 .navLogo a{
-    color: orangered;
     font-size: 2rem;
 }
 
@@ -17,17 +17,19 @@
     align-items: center;
     height: 100%;
     padding: 0 1rem;
+
 }
 
 .navItem a{
-    color: teal;
+    color: #eec018;
     padding: 5px;
-   
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 29px;
 }
  
 .navItem a:hover,
 .navItem a:active{
-    color: orangered;
+    color: #000080;
 }
 
 .navItem ul{
@@ -50,3 +52,4 @@
 img {
   width: 198px;
 }
+

@@ -7,9 +7,9 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import JobForm from "../components/jobForm";
-import JobWrapper from "../components/jobWrapper";
-import JobCard from "../components/jobCard";
-import ResumeCard from "../components/resumeCard";
+import JobWrapper from "../components/jobWrapper"
+import JobCard from "../components/jobCard"
+import '../components/Form/form.css'
 
 class Resume extends Component {
     state = {
@@ -99,7 +99,7 @@ class Resume extends Component {
                                 value={this.state.skills}
                                 onChange={this.handleInputChange}
                                 name="skills"
-                                placeholder="enter your skills"
+                                placeholder="Enter your Skills"
                             />
                             <Input
                                 value={this.state.address}
@@ -111,13 +111,13 @@ class Resume extends Component {
                                 value={this.state.tech}
                                 onChange={this.handleInputChange}
                                 name="tech"
-                                placeholder="Technologies known"
+                                placeholder="Technologies Known"
                             />
                             <FormBtn
                                 disabled={!(this.state.name && this.state.skills && this.state.address && this.state.tech)}
                                 onClick={this.handleFormSubmit}
                             >
-                                Submit resume
+                                Submit Resume
                             </FormBtn>
                         </form>
                         <br></br>

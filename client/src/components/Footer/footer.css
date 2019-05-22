@@ -1,9 +1,18 @@
 .footer{
-    background-color: purple;
     position: fixed;
     width: 100%;
     bottom: 0;
     left: 0;
     text-align: center;
-    color: white;
+    color: #000080;
 }
+
+.footer span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3px;
+    background-color: #eec018;
+  }
+  
