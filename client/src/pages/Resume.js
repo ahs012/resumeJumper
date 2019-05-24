@@ -23,12 +23,14 @@ class Resume extends Component {
     };
 
     componentDidMount() {
-        const email = JSON.parse(localStorage.getItem("userData"))
+        const email = JSON.parse(localStorage.getItem("userEmail"))
+        console.log(email);
         const promiseArr = [
             this.loadResume(email),
             
         ]
         Promise.all(promiseArr).then((allOfTheDatas) => {
+          
             const resumeData = allOfTheDatas[0].data;
             
             this.setState({ owner: email, allResumes: resumeData })
@@ -59,17 +61,17 @@ class Resume extends Component {
         });
     };
   
-    handleFormSubmit = event => {
+    handleResumeSubmit = event => {
         event.preventDefault();
         if (this.state.name && this.state.skills && this.state.address && this.state.tech) {
-            const email = JSON.parse(localStorage.getItem("userData"))
+            const email = JSON.parse(localStorage.getItem("userEmail"))
             // save resume 
             API.saveResume({
                 name: this.state.name,
                 address: this.state.address,
                 skills: this.state.skills,
                 tech: this.state.tech,
-                owner: email ? email : "chern@test.com"
+                owner: email
             }).then(res => {
                 // reload resumes
                 this.loadResume(email).then((data)=> 
@@ -114,7 +116,7 @@ class Resume extends Component {
                             />
                             <FormBtn
                                 disabled={!(this.state.name && this.state.skills && this.state.address && this.state.tech)}
-                                onClick={this.handleFormSubmit}
+                                onClick={this.handleResumeSubmit}
                             >
                                 Submit Resume
                             </FormBtn>
@@ -125,7 +127,7 @@ class Resume extends Component {
                         <JobForm 
                         allResumes={this.state.allResumes}
                         currentRes={this.state.currentResume}
-                        formSubmit={this.job}
+                        jobFormSubmit={this.job}
                         reloadJobs={this.loadJobs}
                         />
 

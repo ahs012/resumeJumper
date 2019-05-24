@@ -30,6 +30,7 @@ class CreateAccount extends Component {
         //    if (email_reg.test(emailinput) == false) {
         //        alert('Please enter a valid email');
         //    }
+        const userEmail = localStorage.setItem('userEmail', JSON.stringify(this.state.userName));
         event.preventDefault();
         if (this.state.firstName && this.state.lastName && this.state.userName && this.state.password && this.state.address && this.state.cardNumber && this.state.securityCode && this.state.date) {
             API.saveUser({
@@ -46,6 +47,7 @@ class CreateAccount extends Component {
             })
                 // .then(res => this.loadUsers())
                 .catch(err => console.log(err));
+                window.location="./profile";
         }
     };
 
@@ -68,7 +70,7 @@ class CreateAccount extends Component {
                     name="lastName"
                     onChange={this.handleInputChange} />
                     <br/>
-                <input placeholder='User Name'
+                <input placeholder='Email'
                     value={this.state.userName}
                     name="userName"
                     onChange={this.handleInputChange} />
