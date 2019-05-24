@@ -19,11 +19,11 @@ router
 
   try{
     //Contact Info
-    const name = "Albert Schumacher";
+    const name = "John Doe";
     const phoneNumber = "7863008714";
-    const linkedIn = "placeholder@linkedIn.com";
-    const email = this.state.owner;
-    const homeAddress = this.state.address;
+    const linkedIn = "www.linkedin.com/in/johnD";
+    const email = "JohnDoe09@gmail.com";
+    const homeAddress = "8420 SW 114 ST Miami, FL 33156";
 
     //Education Info
     const experiences = [

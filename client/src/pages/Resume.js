@@ -83,19 +83,98 @@ class Resume extends Component {
 
     createMyDoc = event => {
         const myName = JSON.parse(localStorage.getItem("userEmail"))
+    /////////////////////////////
+    // Need to send user info to back end in order to create depending on user. 
+    // Using Hard Coded data for saturday//
+    // Not risking it not running //
+    /////////////////////////////
+
+    //     const myResumeObject = {
+    //     //Contact Info
+    //         name : this.state.name,
+    //         phoneNumber : "7863008714",
+    //         linkedIn : "placeholder@linkedIn.com",
+    //         email : this.state.owner,
+    //         homeAddress : this.state.address,
+
+    // //     //Education Info
+    // //     experiences = [
+    // //   {
+    // //     summary: "Full-stack developer working with Angular and Java. Working for the iShares platform",
+    // //     title: "Associate Software Developer",
+    // //     endDate: "2/2/14",
+    // //     startDate: "1/1/12",
+    // //     company: {
+    // //       name: "Univeristy of Miami"
+    // //     }
+    // //   },
+    // //   {
+    // //     summary: "Full-stack developer working with Angular and Java. Working for the iShares platform",
+    // //     title: "Associate Software Developer",
+    // //     endDate: "3/3/13",
+    // //     startDate: "2/2/12",
+    // //     company: {
+    // //       name: "Univeristy of Miami"
+    // //     }
+    // //   }
+    // // ],
+    // // //Education Data, Hardcoded for Demo
+    // //     educations = [
+    // //   {
+    // //       degree: "Master of Science (MSc)",
+    // //       fieldOfStudy: "Computer Science",
+    // //       notes:
+    // //           "Exam Results: 1st Class with Distinction, Dissertation: 1st Class with Distinction\n\nRelevant Courses: Java and C# Programming, Software Engineering, Artificial Intelligence, \nComputational Photography, Algorithmics, Architecture and Hardware.\n\nCreated a Windows 8 game in JavaScript for the dissertation. \n\nCreated an award-winning 3D stereoscopic game in C# using XNA.",
+    // //       schoolName: "University College London",
+    // //       startDate: {
+    // //           year: 2012,
+    // //       },
+    // //       endDate: {
+    // //           year: 2013,
+    // //       },
+    // //   },
+    // //   {
+    // //       degree: "Bachelor of Engineering (BEng)",
+    // //       fieldOfStudy: "Material Science and Engineering",
+    // //       notes:
+    // //           "Exam Results: 2:1, Dissertation: 1st Class with Distinction\n\nRelevant courses: C Programming, Mathematics and Business for Engineers.",
+    // //       schoolName: "Imperial College London",
+    // //       startDate: {
+    // //           year: 2009,
+    // //       },
+    // //       endDate: {
+    // //           year: 2012,
+    // //       },
+    // //   },
+    // // ],
+    // // //Skills Data
+    // //     skills = ["Javascript", "React.js","HTML","CSS"],
+    // //     achivements = [
+    // //   {
+    // //     issuer: "Oracle",
+    // //     name: "Oracle Certified"
+    // //   },
+    // //   {
+    // //     issuer: "University of Miami",
+    // //     name: "Fullstack Web Development"
+    // //   }
+    // // ]
+    // }
+    
+        //Axios request to create/download Docx
         console.log("creating your doc")
         Axios({
             url: 'api/resume/createDoc',
             method: 'GET',
             responseType: 'blob', // important
-           }).then((response) => {
+        }).then((response) => {
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
             link.href = url;
             link.setAttribute('download', 'myResume.docx');
             document.body.appendChild(link);
             link.click();
-           });
+        });
     }
     
     render() {
@@ -195,7 +274,7 @@ class Resume extends Component {
                             ))
                             }
                         </List>
-                        <button onClick = {this.createMyDoc}>Create Doc</button>
+                        <button onClick = {this.createMyDoc}>Create Your Resume!</button>
                     </Col>
                 </Row>
             </Container>

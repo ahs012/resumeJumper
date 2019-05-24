@@ -115,7 +115,7 @@ class Users extends Component {
                   <ListItem key={user._name}>
                     <li>Name:{user.name}</li>
                     <li>Email:{user.email}</li>
-                    <li>Addres:{user.addres}</li>
+                    <li>Address:{user.addres}</li>
                   </ListItem>
                 ))}
               </List>
