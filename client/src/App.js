@@ -17,12 +17,14 @@ import './components/Background/background.css'
 
 
 function App() {
+  const currentRoute = window.location.pathname
   return (
     
     <Router>
       <body className='body'>
       <div>
-        <Nav />
+        
+        {currentRoute=="/" || "/login" ? "" : <Nav />}
       <main style={{marginTop: '64px'}}></main>
      
         <Switch>
