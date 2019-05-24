@@ -1,11 +1,16 @@
 import React, { Component } from 'react'; 
 import "./nav.css";
-
+import {withRouter} from 'react-router-dom';
 
 function clearData(){localStorage.clear()}
 
 
-const Nav = props => (
+const Nav = props => {
+
+  const {pathname}=props.location;
+  if(pathname!=="/"&&pathname!=="/login"&&pathname!=="/createaccount"){
+
+  return(
   <header className="toolbar">
     <nav className="nav_toolbar">
       <div></div>
@@ -23,7 +28,11 @@ const Nav = props => (
     </nav>
   </header>
 )
+  }
 
+  return("")
+}
 
+const NavWithRouter= withRouter(Nav);
 
-export default Nav;
+export default NavWithRouter;
