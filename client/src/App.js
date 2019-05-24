@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router-dom";
 import Users from "./pages/Users";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
@@ -16,18 +16,17 @@ import './components/Background/background.css'
 
 
 
-function App() {
-  const currentRoute = window.location.pathname
+function App(props) {
+
   return (
     
     <Router>
       <body className='body'>
       <div>
-        
-        {currentRoute=="/" || "/login" ? "" : <Nav />}
-      <main style={{marginTop: '64px'}}></main>
-     
+        <Nav />
+      
         <Switch>
+         
           <Route exact path="/" component={Home} />  
           <Route exact path="/Login" component={Login} />  
           <Route exact path="/Profile" component={Profile}/>
