@@ -5,8 +5,6 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import JobForm from "../components/jobForm";
-import JobWrapper from "../components/jobWrapper"
-import JobCard from "../components/jobCard"
 import '../components/Form/form.css'
 import ResumeCard from "../components/resumeCard"
 

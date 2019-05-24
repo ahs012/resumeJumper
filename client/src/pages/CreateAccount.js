@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import  '../components/Background/background.css'
+
 
 class CreateAccount extends Component {
     state = {
@@ -23,6 +23,7 @@ class CreateAccount extends Component {
 
         });
     };
+
 
     handleFormSubmit = event => {
         //     var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
@@ -94,33 +95,33 @@ class CreateAccount extends Component {
                     name="NameOnCard"
                     onChange={this.handleInputChange} /> */}
                     <input placeholder='Name on Card'
-                    value={this.state.nameOnCard}
-                    name="nameOnCard"
-                    onChange={this.handleInputChange} />
-                <input placeholder='Card Number'
-                    value={this.state.cardNumber}
-                    name="cardNumber"
-                    onChange={this.handleInputChange} />
-                    <br/>
-                <input placeholder='MM/DD/YYYY'
-                    value={this.state.date}
-                    name="date"
-                    onChange={this.handleInputChange} />
-                    <br/>
-                <input placeholder='CVV'
-                    value={this.state.securityCode}
-                    name="securityCode"
-                    onChange={this.handleInputChange} />
-                    <br/>
-                <input placeholder='Postal'
-                    value={this.state.postal}
-                    name="postal"
-                    onChange={this.handleInputChange} />
-                    <br/>
-                <button onClick={this.handleFormSubmit} className="btn btn-warning" style={{color:'#000080', margin:'2%' }}>Create Account</button>
-                <br/>
-                <p style={{opacity: '0.5'}}>*By signing up, you agree to our Terms of Use and to receive Resume Ready emails & updates and acknowledge that you read our Privacy Policy.</p>
-            </form>
+                        value={this.state.nameOnCard}
+                        name="nameOnCard"
+                        onChange={this.handleInputChange} />
+                    <input placeholder='Card Number'
+                        value={this.state.cardNumber}
+                        name="cardNumber"
+                        onChange={this.handleInputChange} />
+                    <br />
+                    <input placeholder='MM/DD/YYYY'
+                        value={this.state.date}
+                        name="date"
+                        onChange={this.handleInputChange} />
+                    <br />
+                    <input placeholder='CVV'
+                        value={this.state.securityCode}
+                        name="securityCode"
+                        onChange={this.handleInputChange} />
+                    <br />
+                    <input placeholder='Postal'
+                        value={this.state.postal}
+                        name="postal"
+                        onChange={this.handleInputChange} />
+                    <br />
+                    <button onClick={this.handleFormSubmit} className="btn btn-warning" style={{ color: '#000080', margin: '2%' }}>Create Account</button>
+                    <br />
+                    <p style={{ opacity: '0.5' }}>*By signing up, you agree to our Terms of Use and to receive Resume Ready emails & updates and acknowledge that you read our Privacy Policy.</p>
+                </form>
             </div>
         )
     }
