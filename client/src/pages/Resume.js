@@ -9,6 +9,7 @@ import JobWrapper from "../components/jobWrapper"
 import JobCard from "../components/jobCard"
 import '../components/Form/form.css'
 import ResumeCard from "../components/resumeCard"
+import Axios from "axios";
 
 class Resume extends Component {
     state = {
@@ -80,6 +81,22 @@ class Resume extends Component {
         }
     };
 
+    createMyDoc = event => {
+        const myName = JSON.parse(localStorage.getItem("userEmail"))
+        console.log("creating your doc")
+        Axios({
+            url: 'api/resume/createDoc',
+            method: 'GET',
+            responseType: 'blob', // important
+           }).then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'myResume.docx');
+            document.body.appendChild(link);
+            link.click();
+           });
+    }
     
     render() {
         return (
@@ -178,7 +195,7 @@ class Resume extends Component {
                             ))
                             }
                         </List>
-
+                        <button onClick = {this.createMyDoc}>Create Doc</button>
                     </Col>
                 </Row>
             </Container>

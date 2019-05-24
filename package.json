@@ -22,6 +22,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "docx": "^4.7.1",
     "express": "^4.16.4",
     "i": "^0.3.6",
     "if-env": "^1.0.4",
