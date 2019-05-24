@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
@@ -46,7 +44,7 @@ class Users extends Component {
   handleFormSubmit = event => {
     var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
    var emailinput = (this.state.email);
-   if (email_reg.test(emailinput) == false) {
+   if (email_reg.test(emailinput) === false) {
        alert('Please enter a valid email');
    }
     event.preventDefault();

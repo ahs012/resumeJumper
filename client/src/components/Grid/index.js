@@ -24,5 +24,6 @@ export function Col({ size, children }) {
     >
       {children}
     </div>
+  
   );
 }

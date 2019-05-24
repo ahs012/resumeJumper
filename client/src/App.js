@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import Main from "./pages/Main";
 import { Container } from "./components/Grid";
-import './components/Background/background.css';
+import './components/Background/background.css'
 
 
 
