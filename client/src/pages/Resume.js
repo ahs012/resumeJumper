@@ -162,7 +162,7 @@ class Resume extends Component {
     // }
     
         //Axios request to create/download Docx
-        console.log("creating your doc")
+        console.log("Creating your resume...")
         Axios({
             url: 'api/resume/createDoc',
             method: 'GET',
