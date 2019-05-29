@@ -250,6 +250,7 @@ class Resume extends Component {
                             })
 
                             }
+                             <button onClick = {this.createMyDoc}>Create Your Resume!</button>
                         </List>
                         <h3>Your Jobs:</h3>
 
@@ -269,12 +270,9 @@ class Resume extends Component {
                                     </ul>
                                     <br />
                                 </div>
-
-
                             ))
                             }
                         </List>
-                        <button onClick = {this.createMyDoc}>Create Your Resume!</button>
                     </Col>
                 </Row>
             </Container>
