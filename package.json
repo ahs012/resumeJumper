@@ -11,7 +11,10 @@
     "seed": "node scripts/seedDB.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "homepage": "https://ahs012.github.io/resumeJumper",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +27,7 @@
     "bootstrap": "^4.3.1",
     "docx": "^4.7.1",
     "express": "^4.16.4",
+    "gh-pages": "^2.0.1",
     "i": "^0.3.6",
     "if-env": "^1.0.4",
     "mdbreact": "^4.13.0",

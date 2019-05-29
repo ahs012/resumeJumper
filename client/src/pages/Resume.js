@@ -160,7 +160,7 @@ class Resume extends Component {
     // }
     
         //Axios request to create/download Docx
-        console.log("creating your doc")
+        console.log("Creating your resume...")
         Axios({
             url: 'api/resume/createDoc',
             method: 'GET',
@@ -248,6 +248,7 @@ class Resume extends Component {
                             })
 
                             }
+                             <button onClick = {this.createMyDoc}>Create Your Resume!</button>
                         </List>
                         <h3>Your Jobs:</h3>
 
@@ -267,12 +268,9 @@ class Resume extends Component {
                                     </ul>
                                     <br />
                                 </div>
-
-
                             ))
                             }
                         </List>
-                        <button onClick = {this.createMyDoc}>Create Your Resume!</button>
                     </Col>
                 </Row>
             </Container>

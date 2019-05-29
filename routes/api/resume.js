@@ -19,10 +19,10 @@ router
 
   try{
     //Contact Info
-    const name = "John Doe";
+    const name = "Albert Schumacher";
     const phoneNumber = "7863008714";
-    const linkedIn = "www.linkedin.com/in/johnD";
-    const email = "JohnDoe09@gmail.com";
+    const linkedIn = "www.linkedin.com/in/ahs012";
+    const email = "ahs012@gmail.com";
     const homeAddress = "8420 SW 114 ST Miami, FL 33156";
 
     //Education Info
@@ -37,12 +37,12 @@ router
         }
       },
       {
-        summary: "Full-stack developer working with Angular and Java. Working for the iShares platform",
-        title: "Associate Software Developer",
+        summary: "Full-stack developer working with Angular, Node and TypeScript. Working for the iShares platform. Emphasis on Dev-ops and developing the continous integration pipeline.",
+        title: "Software Developer",
         endDate: "3/3/13",
         startDate: "2/2/12",
         company: {
-          name: "Univeristy of Miami"
+          name: "College of London"
         }
       }
     ]
